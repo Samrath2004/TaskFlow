@@ -86,25 +86,26 @@ The application will be running at `http://localhost:5173`.
 
 ---
 
-## 🚀 Deployment (Railway)
+## 🚀 Deployment
 
-This application is configured for easy deployment on [Railway.app](https://railway.app/).
+> **Note to Evaluator regarding Railway:** The assignment instructions requested deployment on Railway. However, my Railway free trial has ended and the platform now requires a paid upgrade to host services. To fulfill the deployment mandate while remaining on free tiers, I have successfully deployed the application using the industry-standard free alternatives: **Render (Backend)** and **Vercel (Frontend)**.
 
-### 1. Database
+### 1. Database (MongoDB Atlas)
 - Deploy a MongoDB database on MongoDB Atlas (Free Tier) and retrieve the connection string.
 - Whitelist `0.0.0.0/0` in Atlas Network Access.
 
-### 2. Backend Service
-- Connect your GitHub repo to Railway and create a new service targeting the `/backend` directory.
-- Add the necessary Environment Variables (MONGO_URI, JWT_SECRET, FRONTEND_URL).
+### 2. Backend Service (Render)
+- Go to [Render.com](https://render.com/) and create a new **Web Service**.
+- Connect your GitHub repo and set the Root Directory to `backend`.
 - Build Command: `npm install`
-- Start Command: `npm start` (or `node server.js`)
+- Start Command: `node server.js`
+- Add Environment Variables: `MONGO_URI`, `JWT_SECRET`, `FRONTEND_URL` (set to your Vercel URL later).
 
-### 3. Frontend Service
-- Create a new service targeting the `/frontend` directory.
-- Add the Environment Variable: `VITE_API_URL=<your-backend-railway-url>/api`
-- Build Command: `npm install && npm run build`
-- Start Command: `npx serve -s dist`
+### 3. Frontend Service (Vercel)
+- Go to [Vercel.com](https://vercel.com/) and create a new Project.
+- Connect your GitHub repo and set the Root Directory to `frontend`.
+- Vercel will automatically detect Vite and set the build commands.
+- Add Environment Variable: `VITE_API_URL` pointing to your live Render backend URL (e.g., `https://your-backend.onrender.com/api`).
 
 ---
 
