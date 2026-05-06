@@ -12,6 +12,11 @@ Check out the live application here:
 
 *(Note: The backend is hosted on a free Render tier, which may take ~50 seconds to spin up on your first visit!)*
 
+### 🔑 Demo Admin Credentials
+If you prefer not to register a new account to test the Admin features, you can log in using the pre-configured global Admin account:
+- **Email:** `samrathagarwal2004@gmail.com`
+- **Password:** `samrath@123`
+
 ---
 
 ## 🎯 How It Works (Application Flow)
