@@ -49,13 +49,13 @@ const KanbanBoard = ({ projectId, searchTerm, isAdmin, projectMembers }) => {
     },
     onSuccess: () => {
       // Background refetch to ensure sync
-      queryClient.invalidateQueries(['tasks', projectId]);
-      queryClient.invalidateQueries(['dashboardStats']);
+      queryClient.invalidateQueries({ queryKey: ['tasks', projectId] });
+      queryClient.invalidateQueries({ queryKey: ['dashboardStats'] });
     },
     onError: () => {
       toast.error('Failed to update task status');
       // Revert optimistic update
-      queryClient.invalidateQueries(['tasks', projectId]);
+      queryClient.invalidateQueries({ queryKey: ['tasks', projectId] });
     }
   });
 

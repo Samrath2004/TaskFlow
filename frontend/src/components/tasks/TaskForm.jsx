@@ -31,7 +31,7 @@ const TaskForm = ({ isOpen, onClose, projectId, projectMembers = [] }) => {
       });
       
       toast.success('Task created successfully');
-      queryClient.invalidateQueries(['tasks', projectId]);
+      queryClient.invalidateQueries({ queryKey: ['tasks', projectId] });
       onClose();
     } catch (error) {
       toast.error(error.response?.data?.message || 'Failed to create task');

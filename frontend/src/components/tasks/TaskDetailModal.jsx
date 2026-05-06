@@ -26,8 +26,8 @@ const TaskDetailModal = ({ isOpen, onClose, taskId, isAdmin, projectMembers = []
       return res.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(['task', taskId]);
-      queryClient.invalidateQueries(['tasks']);
+      queryClient.invalidateQueries({ queryKey: ['task', taskId] });
+      queryClient.invalidateQueries({ queryKey: ['tasks'] });
       toast.success('Task updated');
     }
   });
@@ -38,7 +38,7 @@ const TaskDetailModal = ({ isOpen, onClose, taskId, isAdmin, projectMembers = []
       return res.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(['task', taskId]);
+      queryClient.invalidateQueries({ queryKey: ['task', taskId] });
       setCommentText('');
       toast.success('Comment added');
     }

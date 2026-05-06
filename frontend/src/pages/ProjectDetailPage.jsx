@@ -43,7 +43,7 @@ const ProjectDetailPage = () => {
       await api.delete(`/projects/${id}/members/${userId}`);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(['project', id]);
+      queryClient.invalidateQueries({ queryKey: ['project', id] });
     }
   });
 

@@ -56,7 +56,7 @@ const ProjectForm = ({ isOpen, onClose, projectToEdit = null }) => {
         await api.post('/projects', formData);
         toast.success('Project created successfully');
       }
-      queryClient.invalidateQueries(['projects']);
+      queryClient.invalidateQueries({ queryKey: ['projects'] });
       onClose();
     } catch (error) {
       toast.error(error.response?.data?.message || 'Failed to save project');

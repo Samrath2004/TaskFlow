@@ -65,17 +65,25 @@ projectSchema.virtual('taskCount', {
 // Method to check if a user is a member
 projectSchema.methods.isMember = function(userId) {
   const userIdStr = userId.toString();
-  if (this.owner.toString() === userIdStr) return true;
-  return this.members.some(member => member.user.toString() === userIdStr);
+  const ownerIdStr = this.owner._id ? this.owner._id.toString() : this.owner.toString();
+  
+  if (ownerIdStr === userIdStr) return true;
+  return this.members.some(member => {
+    const memberUserIdStr = member.user._id ? member.user._id.toString() : member.user.toString();
+    return memberUserIdStr === userIdStr;
+  });
 };
 
 // Method to check if a user is an admin
 projectSchema.methods.isAdmin = function(userId) {
   const userIdStr = userId.toString();
-  if (this.owner.toString() === userIdStr) return true;
-  return this.members.some(
-    member => member.user.toString() === userIdStr && member.role === 'admin'
-  );
+  const ownerIdStr = this.owner._id ? this.owner._id.toString() : this.owner.toString();
+  
+  if (ownerIdStr === userIdStr) return true;
+  return this.members.some(member => {
+    const memberUserIdStr = member.user._id ? member.user._id.toString() : member.user.toString();
+    return memberUserIdStr === userIdStr && member.role === 'admin';
+  });
 };
 
 const Project = mongoose.model('Project', projectSchema);
