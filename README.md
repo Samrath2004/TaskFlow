@@ -1,136 +1,109 @@
-# TaskFlow - Team Task Manager 🚀
+# 🚀 TaskFlow - Team Task Manager
 
 ![TaskFlow Header](https://via.placeholder.com/1200x400/6366f1/ffffff?text=TaskFlow+-+Team+Task+Manager)
 
-TaskFlow is a production-ready, full-stack MERN application designed to help teams collaborate, organize projects, and track tasks efficiently. Built as an internship selection assignment, it features role-based access control, interactive Kanban boards, and a comprehensive analytics dashboard.
-
-## 🛠️ Tech Stack
-
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
-![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Tanstack Query](https://img.shields.io/badge/React_Query-FF4154?style=for-the-badge&logo=react-query&logoColor=white)
-
-## ✨ Features
-
-- **Authentication & Authorization**: Secure JWT-based login/signup with Admin and Member roles.
-- **Dynamic Dashboard**: View total tasks, completion rates, overdue tasks, and visualized analytics via Recharts.
-- **Project Management**: Create projects, customize colors, and manage team member access.
-- **Interactive Kanban Boards**: Drag-and-drop task management powered by `@dnd-kit`.
-- **Advanced Task Tracking**: Assign users, set priorities, establish due dates, and leave comments.
-- **Responsive Modern UI**: Glass-morphism design, dark mode by default, and mobile-friendly layouts.
+**TaskFlow** is a modern, full-stack web application designed to help teams collaborate, organize projects, and track tasks effortlessly. Built with the MERN stack, it features secure role-based access, drag-and-drop Kanban boards, and a beautiful real-time analytics dashboard.
 
 ---
 
-## 💻 Local Setup Instructions
+## 🔗 Live Demo
+Check out the live application here:
+**👉 [https://task-flow-rho-pied.vercel.app](https://task-flow-rho-pied.vercel.app)**
+
+*(Note: The backend is hosted on a free Render tier, which may take ~50 seconds to spin up on your first visit!)*
+
+---
+
+## 🎯 How It Works (Application Flow)
+Understanding TaskFlow is simple! Here is the user journey:
+
+1. **Role Assignment:** The very first person to register an account automatically becomes the `Admin`. All subsequent users default to the `Member` role.
+2. **Creating Workspaces:** The Admin can create new Projects (workspaces) and customize their colors.
+3. **Building the Team:** Inside a project, the Admin navigates to the **Members** tab to invite other registered users to the project.
+4. **Task Delegation:** The Admin uses the Kanban **Board** to create tasks, set priorities, establish due dates, and assign them directly to team members.
+5. **Member Experience:** When a Member logs in, they only see projects they were invited to. Inside the board, they only see tasks assigned to them. They can drag-and-drop their tasks across columns to update the status.
+6. **Real-Time Analytics:** As tasks are moved, the global **Dashboard** instantly updates its charts and graphs to reflect team progress!
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend:**
+- React.js (Vite)
+- Tailwind CSS & shadcn/ui aesthetics
+- React Query (Server-state management)
+- dnd-kit (Drag-and-drop logic)
+- Recharts (Data visualization)
+
+**Backend:**
+- Node.js & Express.js
+- MongoDB & Mongoose
+- JSON Web Tokens (JWT) for secure authentication
+
+---
+
+## 💻 Getting Started (Local Setup)
+Follow these beginner-friendly steps to get a copy of the project up and running on your local machine.
 
 ### Prerequisites
-- Node.js (v18+ recommended)
-- MongoDB (Local instance or Atlas URI)
+Make sure you have installed:
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- [MongoDB](https://www.mongodb.com/try/download/community) (Or create a free cloud database using MongoDB Atlas)
+- Git
 
 ### 1. Clone the repository
+Open your terminal and run:
 ```bash
-git clone <repository-url>
-cd assignment_ethara
+git clone https://github.com/Samrath2004/TaskFlow.git
+cd TaskFlow
 ```
 
-### 2. Backend Setup
+### 2. Setup the Backend
+The backend runs the API and connects to the database.
 ```bash
 cd backend
 npm install
 ```
-Create a `.env` file in the `backend/` directory using the provided `.env.example` as a template (see Environment Variables section below).
+Create a file named `.env` inside the `backend` folder and add the following:
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string_here
+JWT_SECRET=super_secret_string_123
+JWT_EXPIRE=7d
+FRONTEND_URL=http://localhost:5173
+NODE_ENV=development
+```
+Start the backend server:
 ```bash
-# Start the backend server in development mode
 npm run dev
 ```
 
-### 3. Frontend Setup
-Open a new terminal window.
+### 3. Setup the Frontend
+Open a **new, separate terminal window** and run:
 ```bash
 cd frontend
 npm install
 ```
-Create a `.env` file in the `frontend/` directory:
+Create a file named `.env` inside the `frontend` folder and add:
 ```env
 VITE_API_URL=http://localhost:5000/api
 ```
+Start the React application:
 ```bash
-# Start the Vite development server
 npm run dev
 ```
-The application will be running at `http://localhost:5173`.
+
+**You're done!** Open your browser and go to `http://localhost:5173` to see the app running.
 
 ---
 
-## 🔐 Environment Variables
-
-### Backend (`backend/.env`)
-
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `PORT` | API Server Port | `5000` |
-| `MONGO_URI` | MongoDB Connection String | `mongodb+srv://...` |
-| `JWT_SECRET` | Secret key for signing tokens | `super_secret_string_123` |
-| `JWT_EXPIRE` | Token expiration time | `7d` |
-| `FRONTEND_URL` | Allowed CORS origin | `http://localhost:5173` |
-| `NODE_ENV` | Application environment | `development` |
-
-### Frontend (`frontend/.env`)
-
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `VITE_API_URL` | Backend API base URL | `http://localhost:5000/api` |
-
----
-
-## 🚀 Deployment
+## 🚀 Deployment Notice
 
 > **Note to Evaluator regarding Railway:** The assignment instructions requested deployment on Railway. However, my Railway free trial has ended and the platform now requires a paid upgrade to host services. To fulfill the deployment mandate while remaining on free tiers, I have successfully deployed the application using the industry-standard free alternatives: **Render (Backend)** and **Vercel (Frontend)**.
-
-### 1. Database (MongoDB Atlas)
-- Deploy a MongoDB database on MongoDB Atlas (Free Tier) and retrieve the connection string.
-- Whitelist `0.0.0.0/0` in Atlas Network Access.
-
-### 2. Backend Service (Render)
-- Go to [Render.com](https://render.com/) and create a new **Web Service**.
-- Connect your GitHub repo and set the Root Directory to `backend`.
-- Build Command: `npm install`
-- Start Command: `node server.js`
-- Add Environment Variables: `MONGO_URI`, `JWT_SECRET`, `FRONTEND_URL` (set to your Vercel URL later).
-
-### 3. Frontend Service (Vercel)
-- Go to [Vercel.com](https://vercel.com/) and create a new Project.
-- Connect your GitHub repo and set the Root Directory to `frontend`.
-- Vercel will automatically detect Vite and set the build commands.
-- Add Environment Variable: `VITE_API_URL` pointing to your live Render backend URL (e.g., `https://your-backend.onrender.com/api`).
-
----
-
-## 📚 API Documentation Reference
-
-| Method | Endpoint | Auth | Role | Description |
-|--------|----------|------|------|-------------|
-| **POST** | `/api/auth/register` | No | Any | Register new user |
-| **POST** | `/api/auth/login` | No | Any | Login user |
-| **GET** | `/api/auth/me` | Yes | Any | Get current user profile |
-| **GET** | `/api/projects` | Yes | Any | Get user's projects |
-| **POST** | `/api/projects` | Yes | Any | Create a new project |
-| **GET** | `/api/projects/:id` | Yes | Member | Get project details |
-| **PUT** | `/api/projects/:id` | Yes | Admin | Update project details |
-| **POST** | `/api/tasks` | Yes | Admin | Create new task |
-| **GET** | `/api/tasks/project/:id`| Yes | Member | Get all tasks for a project |
-| **PUT** | `/api/tasks/:id` | Yes | Admin/Assignee| Update a task |
-| **DELETE**| `/api/tasks/:id` | Yes | Admin | Delete a task |
-| **PUT** | `/api/tasks/:id/assign` | Yes | Admin | Assign task to a user |
-| **POST** | `/api/tasks/:id/comment`| Yes | Member | Add a comment to task |
-| **GET** | `/api/dashboard` | Yes | Any | Get dashboard statistics |
 
 ---
 
 ## 🤝 Contributing
-This project was developed specifically for an assignment evaluation. However, feel free to fork and modify it for your own use cases!
+This project was developed as a full-stack internship assignment. Feel free to fork it, learn from it, or modify it for your own personal use!
 
 *Developed by Samrath*
