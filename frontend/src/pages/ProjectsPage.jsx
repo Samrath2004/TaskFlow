@@ -50,15 +50,13 @@ const ProjectsPage = () => {
             />
           </div>
           
-          {isAdmin && (
-            <button
-              onClick={() => setIsFormOpen(true)}
-              className="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shrink-0"
-            >
-              <Plus className="h-5 w-5 mr-1.5" />
-              New Project
-            </button>
-          )}
+          <button
+            onClick={() => setIsFormOpen(true)}
+            className="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shrink-0"
+          >
+            <Plus className="h-5 w-5 mr-1.5" />
+            New Project
+          </button>
         </div>
       </div>
 
@@ -89,7 +87,7 @@ const ProjectsPage = () => {
               ? `No projects matching "${searchTerm}" were found. Try a different search term.` 
               : "You haven't created or joined any projects yet. Create your first project to get started."}
           </p>
-          {isAdmin && !searchTerm && (
+          {!searchTerm && (
             <button
               onClick={() => setIsFormOpen(true)}
               className="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"

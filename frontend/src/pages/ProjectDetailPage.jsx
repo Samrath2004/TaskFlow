@@ -35,8 +35,8 @@ const ProjectDetailPage = () => {
     queryFn: () => fetchProject(id)
   });
 
-  const isAdmin = user?.role === 'admin' || project?.owner?._id === user?.id || 
-    project?.members?.some(m => m.user._id === user?.id && m.role === 'admin');
+  const isAdmin = user?.role === 'admin' || project?.owner?._id === user?._id || 
+    project?.members?.some(m => m.user._id === user?._id && m.role === 'admin');
 
   const removeMember = useMutation({
     mutationFn: async (userId) => {
